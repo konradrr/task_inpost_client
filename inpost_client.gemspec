@@ -28,5 +28,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "simplecov"
   spec.add_runtime_dependency "httparty", "~> 0.13.7"
-  spec.add_runtime_dependency "nokogiri", "~> 1.6.6"
 end
