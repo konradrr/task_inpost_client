@@ -12,11 +12,12 @@ describe InpostClient do
   end
 
   it "has defined the endpoint url" do
+    allow_any_instance_of(described_class::API::MachinesLoader).to receive(:get_machines).and_return machines_json
     expect(subject.endpoint_url).to eq url
     expect(described_class.new.endpoint_url).to eq "https://api-pl.easypack24.net/v4"
   end
 
-  it "fetch array of machines" do
+  it "gets array of machines" do
     allow_any_instance_of(described_class::API::MachinesLoader).to receive(:get_machines).and_return machines_json
     expect(subject.machines).to be_an Array
   end
