@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'inpost_client/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "inpost_api_client"
+  spec.name          = "inpost_client"
   spec.version       = InpostClient::VERSION
   spec.authors       = ["Konrad Ryłko"]
   spec.email         = ["konrad.rylko@gmail.com"]
