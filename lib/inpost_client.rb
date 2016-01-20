@@ -1,16 +1,22 @@
 # encoding: UTF-8
 require "inpost_client/version"
 require "inpost_client/api/machines_loader"
+require "inpost_client/api/machine"
+require "inpost_client/machine"
 
 class InpostClient
-  attr_reader :endpoint_url, :machines
+  attr_reader :endpoint_url
 
-  def initialize url=inpost_url
-    @endpoint_url = url
+  def initialize url=nil
+    @endpoint_url = url || inpost_url
   end
 
-  def get_machines
-    @machines = InpostClient::API::MachinesLoader.new(endpoint_url).machines
+  def machines url=endpoint_url
+    @machines ||= InpostClient::API::MachinesLoader.new(url).machines
+  end
+
+  def machine id, machines_collection=machines
+    @machine = InpostClient::Machine.new(id, machines_collection).machine
   end
 
   private

@@ -18,6 +18,6 @@ describe InpostClient do
 
   it "fetch array of machines" do
     allow_any_instance_of(described_class::API::MachinesLoader).to receive(:get_machines).and_return machines_json
-    expect(subject.get_machines).to be_an Array
+    expect(subject.machines).to be_an Array
   end
 end
