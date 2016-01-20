@@ -4,14 +4,9 @@ Very simple client for sample Inpost Machines API.
 
 ## Installation
 
+
 ```ruby
-gem 'inpost_client'
-```
-
-Or
-
-```
-gem install inpost_client
+gem 'inpost_client', git: 'git@github.com:konradrr/task_inpost_client.git'
 ```
 
 ## Usage

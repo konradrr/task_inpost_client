@@ -1,7 +1,6 @@
 # encoding: UTF-8
 require "inpost_client/version"
 require "inpost_client/api/machines_loader"
-require "inpost_client/api/machine"
 require "inpost_client/machine"
 require "inpost_client/machines_by_type"
 
