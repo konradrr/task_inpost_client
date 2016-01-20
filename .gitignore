@@ -7,3 +7,6 @@
 /pkg/
 /spec/reports/
 /tmp/
+
+# Ignore annoying osx files
+.DS_Store
