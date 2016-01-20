@@ -1,0 +1,62 @@
+[
+  {
+    "_links": {
+      "self": {
+        "href": "/v4/machines/ALK01A"
+      },
+      "minimap": {
+        "href": "http://maps.googleapis.com/maps/api/staticmap?size=800x400&center=52.8684,18.7031&zoom=15&markers=color:blue%7Clabel:X%7C52.8684,18.7031"
+      }
+    },
+    "id": "ALK01A",
+    "type": 0,
+    "services": [
+      "parcel"
+    ],
+    "payment_type": 2,
+    "address": {
+      "street": "Słowackiego",
+      "building_no": "131",
+      "post_code": "87-700",
+      "city": "Aleksandrów Kujawski",
+      "province": "kujawsko-pomorskie"
+    },
+    "status": "Operating",
+    "address_str": "Słowackiego 131, Aleksandrów Kujawski",
+    "location": [
+      52.8684,
+      18.7031
+    ],
+    "operating_hours": "24/7"
+  },
+  {
+    "_links": {
+      "self": {
+        "href": "/v4/machines/ALL992"
+      },
+      "minimap": {
+        "href": "http://maps.googleapis.com/maps/api/staticmap?size=800x400&center=51.81284,19.31626&zoom=15&markers=color:blue%7Clabel:X%7C51.81284,19.31626"
+      }
+    },
+    "id": "ALL992",
+    "type": 0,
+    "services": [
+      "parcel"
+    ],
+    "payment_type": 2,
+    "address": {
+      "street": "Piłsudskiego",
+      "building_no": "2/4",
+      "post_code": "95-070",
+      "city": "Aleksandrów Łódzki",
+      "province": "łódzkie"
+    },
+    "status": "Operating",
+    "address_str": "Piłsudskiego 2/4, Aleksandrów Łódzki",
+    "location": [
+      51.81284,
+      19.31626
+    ],
+    "location_description": "Polomarket"
+  }
+]
