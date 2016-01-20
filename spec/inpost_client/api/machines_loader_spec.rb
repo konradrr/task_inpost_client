@@ -3,11 +3,12 @@ require "spec_helper"
 
 describe InpostClient::API::MachinesLoader do
   let(:machines_json) { InpostClient::Specs.load_machines_json }
-  subject { described_class.new "http://enpoint-url.com" }
+  let(:url) { "http://endpoint-url.com" }
+  subject { described_class.new url }
 
   it "has defined the machines url" do
     allow_any_instance_of(described_class).to receive(:get_machines).and_return machines_json
-    expect(subject.send(:machines_url, "http://enpoint-url.com")).to eq "http://enpoint-url.com/machines"
+    expect(subject.send(:machines_url, url)).to eq "http://endpoint-url.com/machines"
   end
 
   it "loads the machines" do
