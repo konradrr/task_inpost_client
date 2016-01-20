@@ -4,7 +4,7 @@ require "httparty"
 class InpostClient
   module API
     class MachinesLoader
-      attr_reader :endpoint_url, :machines
+      attr_accessor :endpoint_url, :machines
 
       def initialize url
         @endpoint_url = machines_url url
@@ -14,7 +14,7 @@ class InpostClient
       private
 
       def machines_url url
-        @machines_url = url + "/machines"
+        @endpoint_url = url + "/machines"
       end
 
       def get_machines url

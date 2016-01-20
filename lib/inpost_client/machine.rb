@@ -1,5 +1,4 @@
 # encoding: UTF-8
-# require "httparty"
 
 class InpostClient
   class Machine
