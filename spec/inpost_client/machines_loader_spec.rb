@@ -1,7 +1,7 @@
 # encoding: UTF-8
 require "spec_helper"
 
-describe InpostClient::API::MachinesLoader do
+describe InpostClient::MachinesLoader do
   let(:machines_json) { InpostClient::Specs.load_machines_json }
   let(:url) { "http://endpoint-url.com" }
   subject { described_class.new url }

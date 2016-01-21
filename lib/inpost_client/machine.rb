@@ -2,28 +2,31 @@
 
 class InpostClient
   class Machine
-    attr_reader :machine, :machines_collection
-
     def initialize id, machines
-      @machines_collection = machines
-      @machine = get_machine id, machines_collection
+      @id = id
+      @machine = get_machine id, machines
+      InpostClient::Machine.create_helper_methods @machine
+    end
+
+    def self.create_helper_methods machine
+      method_names = machine.keys.find_all{ |x| x.to_s[0] != '_' }
+
+      method_names.each do |method_name|
+        define_method(method_name) { @machine[method_name] }
+      end
     end
 
     private
 
-    def get_machine id, machines_collection
-      machine = machines_collection.detect { |machine| machine["id"].downcase == id.downcase }
+    def get_machine id, machines
+      @machine = machines.detect { |x| x["id"].downcase == id.downcase }
 
-      if machine.nil?
+      if @machine.nil?
         raise "Couldn't find Machine with 'id'=#{id}"
         nil
       else
-        machine
+        @machine
       end
-    end
-
-    def machines_url endpoint_url
-      @machines_url = endpoint_url + "/machines"
     end
   end
 end

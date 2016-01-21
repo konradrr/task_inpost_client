@@ -2,6 +2,7 @@
 
 class InpostClient
   class MachinesByType
+    include Enumerable
     attr_reader :machines, :type
 
     def initialize type, machines
@@ -17,6 +18,14 @@ class InpostClient
       else
         machines
       end
+    end
+
+    def method_missing method, *args, &block
+      machines.send method, *args, &block
+    end
+
+    def respond_to_missing? method, include_private=false
+      machines.respond_to?(method, include_private) || super
     end
   end
 end
