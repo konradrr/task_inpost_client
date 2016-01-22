@@ -5,17 +5,25 @@ require "inpost_client/machine"
 class InpostClient
   class MachinesLoader
     include Enumerable
-
-    attr_reader :endpoint_url
     attr_accessor :machines
 
     def initialize url
-      @endpoint_url = machines_url url
-      @machines = get_machines endpoint_url
+      api_machines_url = machines_url url
+      @machines = get_machines api_machines_url
     end
 
     def machine id
       InpostClient::Machine.new id, @machines
+    end
+
+    def by_type type
+      machines = @machines.find_all { |machine| machine["type"] == type }
+      if machines.empty?
+        raise "Couldn't find any Machine with 'type'=#{type}"
+        []
+      else
+        machines
+      end
     end
 
     def method_missing method, *args, &block
@@ -29,7 +37,7 @@ class InpostClient
     private
 
     def machines_url url
-      @endpoint_url = url + "/machines"
+      url + "/machines"
     end
 
     def get_machines url

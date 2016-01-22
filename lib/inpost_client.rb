@@ -2,7 +2,6 @@
 require "inpost_client/version"
 require "inpost_client/machines_loader"
 require "inpost_client/machine"
-require "inpost_client/machines_by_type"
 
 class InpostClient
   attr_reader :endpoint_url, :machines, :machine
@@ -13,12 +12,12 @@ class InpostClient
 
   end
 
-  def machines_by_type type, machines_collection=machines
-    InpostClient::MachinesByType.new(type, machines_collection)
+  def machines_by_type type
+    @machines.by_type type
   end
 
-  def machine id, machines_collection=machines
-    machine = InpostClient::Machine.new(id, machines_collection)
+  def machine id
+    @machines.machine id
   end
 
   def inpost_url

@@ -28,12 +28,15 @@ inpost_client.machines
 
 Get machine by ID
 ```ruby
-inpost_client.machine "XYZ-ID"
+machine = inpost_client.machine "XYZ-ID"
 # => Machine with id=XYZ-ID
+machine.id
+# => "XYZ-ID"
+
 ```
 
 Get machines by type
 ```ruby
-inpost_client.machine_by_type 1
-# => Array of machines with type=1
+inpost_client.machines_by_type 0
+# => Array of machines with type=0
 ```
