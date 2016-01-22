@@ -11,11 +11,11 @@ gem 'inpost_client', git: 'git@github.com:konradrr/task_inpost_client.git'
 
 ## Usage
 
-Create an instance of InpostClient (possibly with optional url) and try some action(s)!
+Create an instance of InpostClient (possibly with optional url)
 
 ```ruby
 inpost_client = InpostClient.new
-# Initially load all machines
+# Initially loads all machines
 ```
 
 ### Machines
@@ -32,7 +32,6 @@ machine = inpost_client.machine "XYZ-ID"
 # => Machine with id=XYZ-ID
 machine.id
 # => "XYZ-ID"
-
 ```
 
 Get machines by type
