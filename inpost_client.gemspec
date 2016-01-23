@@ -1,11 +1,10 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'inpost_client/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "inpost_client"
-  spec.version       = InpostClient::VERSION
+  spec.version       = "0.4"
   spec.authors       = ["Konrad Ryłko"]
   spec.email         = ["konrad.rylko@gmail.com"]
 

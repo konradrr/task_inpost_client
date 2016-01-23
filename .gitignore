@@ -7,6 +7,8 @@
 /pkg/
 /spec/reports/
 /tmp/
+/bin/
+/.rspec
 
 # Ignore annoying osx files
 .DS_Store
