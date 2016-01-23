@@ -1,26 +1,23 @@
-# encoding: UTF-8
 require "spec_helper"
 
 describe InpostClient::Machine do
-  let(:machines_array) { InpostClient::Specs.load_machines_json.to_a }
-  let(:alk_machine) { described_class.new "ALK01A", machines_array }
-  let(:no_machine) { described_class.new "fake-ID", machines_array }
-  let(:methods) { %w(id type services payment_type address status address_str location operating_hours) }
+  subject { described_class.new stub_machine_raw }
+  let(:attributes) { %w(id type services payment_type address status address_str location operating_hours) }
+  # probably too cryptic
+  # let(:attributes) { stub_machine_raw.keys }
+  let(:stub_machine_raw) { { id: "ABC12A", location: [49.85558, 19.33405], location_description: "Stonka",
+    location_description2: "Stonka", operating_hours: "24/7", payment_type: 2, services: ["parcel"],
+    status: "Operating", type: 0 } }
 
-  it "loads the machine by their ID" do
-    expect(alk_machine.id).to eq "ALK01A"
-    expect(alk_machine.status).to eq "Operating"
-  end
-
-  context "no machine with the ID" do
-    it "raises an error" do
-      expect{no_machine}.to raise_error RuntimeError, "Couldn't find Machine with 'id'=fake-ID"
+  it "defines basic attributes using machine's keys" do
+    stub_machine_raw.keys.each do |attribute|
+      expect(subject).to respond_to attribute
     end
   end
 
-  it "defines basic methods using machine's keys" do
-    methods.each do |method|
-      expect(alk_machine).to respond_to method
+  it "assings correct values to attributes" do
+    stub_machine_raw.each do |attribute, value|
+      expect(subject.send(attribute)).to eq value
     end
   end
 end

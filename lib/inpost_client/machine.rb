@@ -1,31 +1,17 @@
-# encoding: UTF-8
-
 class InpostClient
   class Machine
-    def initialize id, machines
-      @id = id
-      @machine = get_machine id, machines
-      InpostClient::Machine.create_helper_methods @machine
-    end
-
-    def self.create_helper_methods machine
-      method_names = machine.keys.find_all{ |x| x.to_s[0] != '_' }
-
-      method_names.each do |method_name|
-        define_method(method_name) { @machine[method_name] }
-      end
+    def initialize machine_raw
+      create_attributes machine_raw
     end
 
     private
 
-    def get_machine id, machines
-      @machine = machines.detect { |x| x["id"].downcase == id.downcase }
+    def create_attributes machine_raw
+      method_names = machine_raw.keys.find_all{ |x| x.to_s[0] != '_' }
 
-      if @machine.nil?
-        raise "Couldn't find Machine with 'id'=#{id}"
-        nil
-      else
-        @machine
+      method_names.each do |method_name|
+        instance_variable_set "@#{method_name}", machine_raw[method_name]
+         InpostClient::Machine.class_eval{attr_reader method_name}
       end
     end
   end
