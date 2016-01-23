@@ -1,26 +1,32 @@
-# encoding: UTF-8
 require "httparty"
 require "inpost_client/machine"
 
 class InpostClient
   class MachinesLoader
     include Enumerable
-    attr_accessor :machines
+    attr_reader :machines
 
     def initialize url
+      @machines = []
       api_machines_url = machines_url url
-      @machines = get_machines api_machines_url
+      machines_hash = get_machines_json api_machines_url
+      instantiate_machines machines_hash
     end
 
-    def machine id
-      InpostClient::Machine.new id, @machines
+    def find id
+      machine = machines.detect { |machine| machine.id.downcase == id.downcase }
+
+      if machine.nil?
+        raise "Couldn't find Machine with 'id'=#{id}"
+      else
+        machine
+      end
     end
 
     def by_type type
-      machines = @machines.find_all { |machine| machine["type"] == type }
+      machines = @machines.find_all { |machine| machine.type == type }
       if machines.empty?
         raise "Couldn't find any Machine with 'type'=#{type}"
-        []
       else
         machines
       end
@@ -36,13 +42,19 @@ class InpostClient
 
     private
 
-    def machines_url url
-      url + "/machines"
+    def get_machines_json url
+      inpost_json = HTTParty.get url
+      machines_raw_hash = inpost_json["_embedded"]["machines"]
     end
 
-    def get_machines url
-      inpost_json = HTTParty.get url
-      inpost_json["_embedded"]["machines"]
+    def instantiate_machines machines_raw_hash
+      machines_raw_hash.each do |machine_hash|
+        @machines << InpostClient::Machine.new(machine_hash)
+      end
+    end
+
+    def machines_url url
+      url + "/machines"
     end
   end
 end
