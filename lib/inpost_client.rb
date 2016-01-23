@@ -1,5 +1,7 @@
+require 'inpost_client/railtie' if defined?(Rails)
 require "inpost_client/machines_loader"
 require "inpost_client/machine"
+require "inpost_client/action_view/helpers"
 
 class InpostClient
   attr_reader :endpoint_url, :machines, :machine
