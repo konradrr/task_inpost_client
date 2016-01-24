@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require "bundler/setup"
-require "inpost_client"
-require "pry"
-Pry.start

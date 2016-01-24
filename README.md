@@ -21,23 +21,26 @@ inpost_client = InpostClient.new
 
 ```ruby
 inpost_client.machines
-# returns an array of machines
-inpost_client.machines_by 0
-# returns an array of machines with type=0
+# => returns an array of machines
+inpost_client.machines.by_type 0
+# => returns an array of machines with type=0
+# by_type(type)
 # attribute: type - type of Inpost machines
 inpost_client.machine "XYZ-ID" #or inpost_client.machines.find "XYZ-ID"
 # => returns machine with id=XYZ-ID
+# machine(id) or machines.find(id)
+# attribute: id - Inpost machine's id
 ```
 You have access to standard machine's attributes as id, type etc.
 
 ```ruby
 inpost_client.machine("XYZ-ID").id
-# returns "XYZ-ID"
+# => returns "XYZ-ID"
 inpost_client.machine("XYZ-ID").type
-# returns 0
+# => returns 0
 ```
 
-# Helper - machines select list
+### Helper - machines select list
 You can generate select list for inpost machines using the helper:
 ```ruby
 select_inpost_machine InpostClient.new.machines
@@ -47,7 +50,8 @@ select_inpost_machine InpostClient.new.machines
 # <option value="ALW01MP">ALW01MP</option>
 # etc.
 
-# attributes: machines*, name, type
+#select_inpost_machine(machines, name, type)
+# attributes
 # machines - required, Inpost machines
 # name - value for the name and id attributes of the select tag
 # type - type of Inpost machines
