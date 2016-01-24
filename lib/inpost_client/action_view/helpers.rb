@@ -7,7 +7,7 @@ class InpostClient
         else
           machines
         end
-        select_tag name, options_from_collection_for_select(machines, "id", "id")
+        select_tag name, options_from_collection_for_select(machines, :id, :id)
       end
     end
   end
